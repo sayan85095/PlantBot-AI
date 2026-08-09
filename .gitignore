@@ -1,0 +1,27 @@
+# Environment variables & secrets
+.env
+*.env
+backend/.env
+
+# Dependencies & Virtualenvs
+node_modules/
+backend/.venv/
+.venv/
+venv/
+ENV/
+env/
+
+# Python cache & artifacts
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+
+# Frontend build & distribution
+frontend/dist/
+frontend/build/
+.cache/
+
+# OS metadata
+.DS_Store
+Thumbs.db

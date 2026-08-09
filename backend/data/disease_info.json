@@ -1,0 +1,186 @@
+{
+  "Tomato": {
+    "Tomato Late Blight": {
+      "description": "Aggressive oomycete disease that spreads fast in cool, wet weather and can destroy a plant within days.",
+      "symptoms": ["Water-soaked pale-to-brown blotches on leaves", "White fuzzy mold on leaf undersides in humid mornings", "Firm brown greasy lesions on fruit", "Rapid blackening and collapse of stems"],
+      "causes": ["Phytophthora infestans pathogen", "Spread by wind-blown spores and splashing water", "Favored by cool (15-21°C / 60-70°F) wet weather"],
+      "treatment": ["Remove and destroy infected plants immediately — do not compost", "Apply a copper-based fungicide or chlorothalonil at first sign", "Avoid overhead watering", "Improve airflow by staking/pruning"],
+      "prevention": ["Plant resistant varieties", "Space plants widely for airflow", "Avoid overhead irrigation", "Rotate away from tomato/potato for 2-3 years", "Destroy volunteer plants"],
+      "care_tips": ["Water at soil level in the morning", "Stake or cage plants", "Check daily during humid weather"]
+    },
+    "Tomato Early Blight": {
+      "description": "Common fungal disease causing target-ring spots, usually starting on older lower leaves.",
+      "symptoms": ["Dark brown spots with concentric rings (bullseye pattern) on older leaves", "Yellowing around lesions", "Leaf drop starting from the bottom", "Dark ringed lesions on stems"],
+      "causes": ["Alternaria solani fungus", "Favored by warm, humid weather", "Spread by wind and rain splash", "Survives in soil and old plant debris"],
+      "treatment": ["Remove infected lower leaves promptly", "Apply chlorothalonil, copper, or mancozeb fungicide at first symptoms", "Mulch to stop soil splashing onto leaves"],
+      "prevention": ["Rotate crops every 2-3 years", "Avoid overhead watering", "Space plants for airflow", "Stake plants off the ground", "Clear plant debris after harvest"],
+      "care_tips": ["Mulch around the base", "Water at soil level", "Check lower leaves weekly"]
+    },
+    "Healthy Leaf": {
+      "description": "No disease detected — normal healthy tomato leaf growth.",
+      "symptoms": ["Vibrant uniform green color", "No spots, lesions, or wilting", "Firm leaf texture"],
+      "causes": ["Good growing conditions"],
+      "treatment": ["No treatment needed"],
+      "prevention": ["Continue current watering, sunlight, and nutrition routine"],
+      "care_tips": ["Water deeply 1-2x/week at soil level", "6-8 hours of sunlight", "Balanced fertilizer during fruiting"]
+    }
+  },
+  "Potato": {
+    "Potato Early Blight": {
+      "description": "Fungal disease causing target-pattern leaf spots; caused by the same fungus as tomato early blight.",
+      "symptoms": ["Brown target-pattern spots on older leaves", "Yellowing and leaf drop", "Occasional dark sunken lesions on tubers"],
+      "causes": ["Alternaria solani fungus", "Warm humid conditions", "More severe on stressed or nutrient-deficient plants"],
+      "treatment": ["Remove infected foliage", "Apply chlorothalonil, copper, or mancozeb fungicide", "Maintain balanced nitrogen — avoid both excess and deficiency"],
+      "prevention": ["Rotate crops", "Use resistant varieties", "Proper plant spacing", "Balanced fertilization to avoid plant stress"],
+      "care_tips": ["Hill soil around stems", "Water consistently", "Avoid drought stress"]
+    },
+    "Potato Late Blight": {
+      "description": "The disease behind the Irish potato famine — extremely aggressive, can wipe out a field within days in cool wet weather.",
+      "symptoms": ["Water-soaked dark green/brown leaf lesions with white fuzzy mold underneath", "Rapid blackening and collapse of foliage", "Reddish-brown granular rot inside tubers"],
+      "causes": ["Phytophthora infestans oomycete", "Spread by spores in cool wet weather", "Infected seed tubers"],
+      "treatment": ["Destroy infected plants immediately", "Apply preventive copper-based or chlorothalonil fungicide before outbreaks in high-risk weather", "Harvest early if an outbreak is detected", "Avoid harvesting in wet conditions"],
+      "prevention": ["Use certified disease-free seed potatoes", "Resistant varieties", "Avoid overhead irrigation", "Hill soil to fully cover tubers", "Destroy cull piles and volunteer plants"],
+      "care_tips": ["Watch weather forecasts for cool/wet blight-favorable conditions", "Scout fields regularly during risk periods"]
+    },
+    "Healthy Leaf": {
+      "description": "No disease detected — normal healthy potato leaf growth.",
+      "symptoms": ["Uniform green color", "No spotting or wilting"],
+      "causes": ["Good growing conditions"],
+      "treatment": ["No treatment needed"],
+      "prevention": ["Continue current watering and nutrition routine"],
+      "care_tips": ["Hill soil around stems as they grow", "Consistent moderate watering"]
+    }
+  },
+  "Apple": {
+    "Apple Scab": {
+      "description": "The most common fungal disease of apple trees, reducing fruit quality and causing early leaf drop.",
+      "symptoms": ["Olive-green velvety spots on leaves turning black and scabby", "Dark scabby lesions on fruit surface", "Premature leaf drop", "Cracked or deformed fruit"],
+      "causes": ["Venturia inaequalis fungus", "Overwinters in fallen leaves", "Spread by wind and rain in spring"],
+      "treatment": ["Apply fungicide (captan, myclobutanil, or sulfur-based) starting at bud break", "Rake and destroy fallen leaves each autumn"],
+      "prevention": ["Clear fallen leaves every autumn", "Prune for airflow", "Plant scab-resistant varieties", "Preventive fungicide sprays during wet spring weather"],
+      "care_tips": ["Prune annually for airflow", "Clean orchard floor each fall"]
+    },
+    "Apple Black Rot": {
+      "description": "Fungal disease causing 'frogeye' leaf spot, fruit rot, and branch cankers.",
+      "symptoms": ["Brown/purple circular leaf spots with concentric rings (frogeye pattern)", "Fruit rot starting at the blossom end, turning black and mummified", "Sunken cankers on branches"],
+      "causes": ["Botryosphaeria obtusa fungus", "Enters through wounds or dead wood", "Spreads in warm wet weather"],
+      "treatment": ["Prune out and destroy cankered branches and mummified fruit", "Apply fungicide during the growing season"],
+      "prevention": ["Maintain tree vigor with proper fertilization/watering", "Prune out dead wood annually", "Remove mummified fruit from tree and ground"],
+      "care_tips": ["Sanitize pruning tools between cuts", "Inspect for cankers each dormant season"]
+    },
+    "Healthy Leaf": {
+      "description": "No disease detected — normal healthy apple leaf growth.",
+      "symptoms": ["Uniform green color", "No spotting or lesions"],
+      "causes": ["Good growing conditions"],
+      "treatment": ["No treatment needed"],
+      "prevention": ["Continue current care routine"],
+      "care_tips": ["Annual pruning for airflow", "Clear fallen debris each season"]
+    }
+  },
+  "Corn": {
+    "Corn Common Rust": {
+      "description": "Fungal disease producing reddish-brown pustules on leaves; usually minor unless infection is severe or early.",
+      "symptoms": ["Small reddish-brown to cinnamon raised pustules on both leaf surfaces", "Pustules darken late season", "Severe cases cause yellowing and leaf death"],
+      "causes": ["Puccinia sorghi fungus", "Wind-dispersed spores", "Favored by cool moist weather (16-25°C / 60-77°F)"],
+      "treatment": ["Apply a strobilurin or triazole fungicide if infection is severe or early", "Minor infections usually don't need treatment"],
+      "prevention": ["Plant rust-resistant hybrids", "Avoid very early planting in high-risk cool/humid regions"],
+      "care_tips": ["Scout fields weekly during cool humid periods"]
+    },
+    "Healthy Leaf": {
+      "description": "No disease detected — normal healthy corn leaf growth.",
+      "symptoms": ["Uniform green color", "No pustules or spotting"],
+      "causes": ["Good growing conditions"],
+      "treatment": ["No treatment needed"],
+      "prevention": ["Continue current care routine"],
+      "care_tips": ["Monitor during cool humid periods"]
+    }
+  },
+  "Grape": {
+    "Grape Black Rot": {
+      "description": "Serious fungal disease that can destroy an entire grape crop if left untreated.",
+      "symptoms": ["Small tan/brown circular leaf spots with dark borders", "Black shriveled 'mummified' berries", "Lesions on shoots and tendrils"],
+      "causes": ["Guignardia bidwellii fungus", "Overwinters in mummified berries and infected wood", "Spread by rain splash in warm wet weather"],
+      "treatment": ["Remove and destroy mummified berries and infected canes during dormant pruning", "Apply fungicide (mancozeb or myclobutanil) from bud break through fruit set"],
+      "prevention": ["Prune for good air circulation", "Remove all mummified fruit from vine and ground", "Preventive fungicide program during wet spring weather"],
+      "care_tips": ["Clean vineyard floor each dormant season", "Monitor closely from bloom through fruit set"]
+    },
+    "Healthy Leaf": {
+      "description": "No disease detected — normal healthy grape leaf growth.",
+      "symptoms": ["Uniform green color", "No spotting or lesions"],
+      "causes": ["Good growing conditions"],
+      "treatment": ["No treatment needed"],
+      "prevention": ["Continue current care routine"],
+      "care_tips": ["Clean vineyard floor seasonally"]
+    }
+  },
+  "Pepper": {
+    "Pepper Bacterial Spot": {
+      "description": "Bacterial disease causing leaf and fruit spotting; can cause significant defoliation in warm wet conditions.",
+      "symptoms": ["Small water-soaked leaf spots turning brown/black with a yellow halo", "Spots merging and causing leaf drop", "Raised scabby brown spots on fruit"],
+      "causes": ["Xanthomonas bacteria", "Spread by splashing water, wind-driven rain, and contaminated seed/tools", "Favored by warm wet humid weather"],
+      "treatment": ["Apply copper-based bactericide (often combined with mancozeb, since copper resistance is common)", "Remove and destroy infected plant debris", "Avoid working in fields when wet"],
+      "prevention": ["Use certified disease-free seed/transplants", "Avoid overhead irrigation", "Rotate crops 2-3 years", "Disinfect tools between plants"],
+      "care_tips": ["Water at soil level", "Space plants for airflow", "Avoid handling wet foliage"]
+    },
+    "Healthy Leaf": {
+      "description": "No disease detected — normal healthy pepper leaf growth.",
+      "symptoms": ["Uniform green color", "No spotting"],
+      "causes": ["Good growing conditions"],
+      "treatment": ["No treatment needed"],
+      "prevention": ["Continue current care routine"],
+      "care_tips": ["Water at soil level, avoid wetting foliage"]
+    }
+  },
+  "Citrus": {
+    "Citrus Canker": {
+      "description": "Highly contagious bacterial disease; a regulated quarantine pathogen in many regions.",
+      "symptoms": ["Raised corky brown lesions with a yellow halo on leaves, fruit, and twigs", "Water-soaked lesion margins", "Premature leaf and fruit drop in severe cases"],
+      "causes": ["Xanthomonas citri bacteria", "Spread by wind-driven rain, contaminated tools, and citrus leafminer wounds"],
+      "treatment": ["Prune and destroy infected plant material", "Apply copper-based bactericide, especially after wind/rain events", "Control citrus leafminer", "This is a regulated disease in many regions — contact your local agricultural extension office, as reporting/removal may be legally required"],
+      "prevention": ["Use certified disease-free nursery stock", "Avoid overhead irrigation", "Windbreaks to reduce leaf wounding", "Disinfect tools between trees"],
+      "care_tips": ["Inspect new growth regularly", "Avoid working on wet trees", "Report suspected outbreaks to local authorities if in a canker-free region"]
+    },
+    "Citrus Greening (HLB)": {
+      "description": "One of the most destructive citrus diseases worldwide, spread by the Asian citrus psyllid; currently has no cure.",
+      "symptoms": ["Blotchy, asymmetric yellow mottling across the leaf midrib (unlike nutrient deficiency)", "Small, lopsided, bitter fruit that stays green at the bottom", "Twig dieback", "Stunted growth"],
+      "causes": ["Candidatus Liberibacter bacteria", "Transmitted exclusively by the Asian citrus psyllid"],
+      "treatment": ["No cure currently exists", "Management focuses on removing and destroying infected trees to reduce spread, and controlling the psyllid vector", "Contact your local agricultural extension immediately — this is a regulated quarantine disease in most citrus regions"],
+      "prevention": ["Use certified disease-free nursery stock", "Monitor and control psyllid populations", "Inspect trees regularly", "Report suspected cases promptly"],
+      "care_tips": ["Inspect new flush growth for psyllids and mottled yellowing", "Avoid moving citrus plant material between regions"]
+    },
+    "Citrus Black Spot": {
+      "description": "Fungal disease that mainly affects fruit appearance and marketability; regulated in many export markets.",
+      "symptoms": ["Small dark brown/black spots with grey centers on fruit rind", "Similar spots occasionally on leaves", "Yellow halo around spots"],
+      "causes": ["Phyllosticta citricarpa fungus", "Spread by rain splash", "Favored by warm wet summer conditions"],
+      "treatment": ["Apply copper-based or strobilurin fungicide during fruit development", "Remove fallen leaves/debris that harbor the fungus"],
+      "prevention": ["Good grove sanitation — remove fallen leaves and fruit", "Preventive fungicide sprays during wet season", "Prune for air circulation"],
+      "care_tips": ["Monitor fruit closely from early development through harvest", "Keep grove floor clean"]
+    },
+    "Healthy Leaf": {
+      "description": "No disease detected — normal healthy citrus leaf growth.",
+      "symptoms": ["Uniform glossy green color", "No mottling or spotting"],
+      "causes": ["Good growing conditions"],
+      "treatment": ["No treatment needed"],
+      "prevention": ["Continue current care routine, monitor for psyllids"],
+      "care_tips": ["Inspect new flush growth periodically"]
+    }
+  },
+  "Rice": {
+    "Rice Blast": {
+      "description": "One of the most destructive rice diseases worldwide, capable of causing total crop loss under favorable conditions.",
+      "symptoms": ["Diamond/spindle-shaped lesions with grey centers and brown borders on leaves", "Lesions girdling stems", "'Neck blast' — grain heads break and turn white/empty"],
+      "causes": ["Magnaporthe oryzae fungus", "Favored by high humidity, excess nitrogen, and dense planting", "Spread by wind-borne spores"],
+      "treatment": ["Apply fungicide (tricyclazole, azoxystrobin, or propiconazole) at first sign of lesions", "Avoid excess nitrogen application", "Drain excess standing water if humidity is very high"],
+      "prevention": ["Use resistant rice varieties", "Avoid excessive nitrogen — use split doses", "Proper plant spacing for airflow", "Remove infected crop residue after harvest"],
+      "care_tips": ["Scout fields regularly during humid periods", "Balance nitrogen with split applications"]
+    },
+    "Healthy Leaf": {
+      "description": "No disease detected — normal healthy rice leaf growth.",
+      "symptoms": ["Uniform green color", "No lesions"],
+      "causes": ["Good growing conditions"],
+      "treatment": ["No treatment needed"],
+      "prevention": ["Continue current care routine"],
+      "care_tips": ["Balance nitrogen application, monitor humidity"]
+    }
+  }
+}
