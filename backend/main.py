@@ -83,9 +83,12 @@ app = FastAPI(
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
+        "http://localhost:5173",
         "http://localhost:5174",
-        "https://glorious-succotash-4j7pq4x9g975fx4r-5174.app.github.dev",
+        "https://plant-bot-ai.vercel.app",
+        "https://plantbot-ai.onrender.com",
     ],
+    allow_origin_regex=r"https://.*\.vercel\.app|https://.*\.app\.github\.dev|http://localhost:\d+",
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

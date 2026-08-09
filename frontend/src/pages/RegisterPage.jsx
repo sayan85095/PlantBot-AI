@@ -77,7 +77,7 @@ const RegisterPage = () => {
 
   const handleGoogleSignUp = () => {
     setError('');
-    const clientId = import.meta.env.VITE_GOOGLE_CLIENT_ID;
+    const clientId = import.meta.env.VITE_GOOGLE_CLIENT_ID || '107283915574-sk5qcbk4h360kucm1f2se0lkq8q5p210.apps.googleusercontent.com';
     if (!clientId || clientId.includes('placeholder')) {
       setError('Google Sign-In is not configured yet. Please configure VITE_GOOGLE_CLIENT_ID in your frontend/.env file.');
       return;
