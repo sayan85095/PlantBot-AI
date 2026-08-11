@@ -39,6 +39,7 @@ const DetectionPage = () => {
   const videoRef = useRef(null);
   const canvasRef = useRef(null);
   const streamRef = useRef(null);
+  const fileInputRef = useRef(null);
 
   const navigate = useNavigate();
   const { t } = useTranslation();
@@ -134,7 +135,7 @@ const DetectionPage = () => {
     setIsWebcamActive(false);
   };
 
-  // Capture photo from Webcam video stream
+  // Capture photo from Webcam video stream and trigger instant AI diagnosis
   const captureWebcamPhoto = () => {
     if (!videoRef.current || !canvasRef.current) return;
     const video = videoRef.current;
@@ -148,7 +149,11 @@ const DetectionPage = () => {
     canvas.toBlob((blob) => {
       if (blob) {
         const file = new File([blob], `webcam_leaf_${Date.now()}.jpg`, { type: 'image/jpeg' });
-        handleFileSelect(file);
+        stopWebcam();
+        setSelectedFile(file);
+        setPreviewUrl(URL.createObjectURL(file));
+        // Auto trigger AI diagnosis instantly!
+        handleAnalyze(file);
       }
     }, 'image/jpeg', 0.95);
   };
@@ -191,13 +196,14 @@ const DetectionPage = () => {
     setError('');
   };
 
-  const handleAnalyze = async () => {
-    if (!selectedFile) return;
+  const handleAnalyze = async (overrideFile) => {
+    const fileToAnalyze = overrideFile || selectedFile;
+    if (!fileToAnalyze) return;
     setLoading(true);
     setError('');
 
     const formData = new FormData();
-    formData.append('file', selectedFile);
+    formData.append('file', fileToAnalyze);
 
     try {
       const res = await api.post('/predict', formData, {
@@ -331,12 +337,13 @@ const DetectionPage = () => {
                   }`}
                 >
                   <input
+                    ref={fileInputRef}
                     type="file"
                     accept="image/jpeg,image/png,image/webp"
                     onChange={(e) => e.target.files && handleFileSelect(e.target.files[0])}
-                    className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                    className="hidden"
                   />
-                  <div className="space-y-4 pointer-events-none">
+                  <div className="space-y-4">
                     <div className="w-20 h-20 rounded-3xl bg-emerald-100 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 flex items-center justify-center mx-auto shadow-md">
                       <UploadCloud className="w-10 h-10" />
                     </div>
@@ -349,14 +356,18 @@ const DetectionPage = () => {
                       </p>
                     </div>
 
-                    <div className="flex flex-wrap items-center justify-center gap-3 pointer-events-auto pt-2">
-                      <button type="button" className="px-6 py-2.5 rounded-xl bg-slate-900 text-white dark:bg-white dark:text-slate-900 font-bold text-sm shadow">
+                    <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
+                      <button
+                        type="button"
+                        onClick={() => fileInputRef.current?.click()}
+                        className="px-6 py-2.5 rounded-xl bg-slate-900 text-white dark:bg-white dark:text-slate-900 font-bold text-sm shadow hover:opacity-90 transition-opacity cursor-pointer"
+                      >
                         {t('detection.browseFile')}
                       </button>
                       <button
                         type="button"
-                        onClick={(e) => { e.stopPropagation(); startWebcam(); }}
-                        className="flex items-center gap-2 px-6 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm shadow shadow-emerald-600/20"
+                        onClick={() => startWebcam()}
+                        className="flex items-center gap-2 px-6 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm shadow shadow-emerald-600/20 transition-all cursor-pointer"
                       >
                         <Video className="w-4 h-4" /> {t('detection.openWebcam')}
                       </button>
