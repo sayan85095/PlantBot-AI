@@ -4,6 +4,7 @@ import { useAuth } from '../context/AuthContext';
 import { useGoogleLogin } from '@react-oauth/google';
 import { useTranslation } from 'react-i18next';
 import { Sprout, User, Mail, Lock, AlertCircle, ArrowRight, Briefcase, Phone, Eye, EyeOff, Loader2 } from 'lucide-react';
+import HumanCaptchaWidget from '../components/HumanCaptchaWidget';
 
 const RegisterPage = () => {
   const { t } = useTranslation();
@@ -13,6 +14,7 @@ const RegisterPage = () => {
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [role, setRole] = useState('farmer');
+  const [isHuman, setIsHuman] = useState(false);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   
@@ -88,6 +90,11 @@ const RegisterPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
+
+    if (!isHuman) {
+      setError('Please complete the "I am human" security check below before creating your account.');
+      return;
+    }
 
     if (password.length < 8) {
       setError('Password must be at least 8 characters long.');
@@ -249,6 +256,9 @@ const RegisterPage = () => {
               </select>
             </div>
           </div>
+
+          {/* Anti-Bot Human Verification Checkbox Widget */}
+          <HumanCaptchaWidget isHuman={isHuman} setIsHuman={setIsHuman} />
 
           <button
             type="submit"

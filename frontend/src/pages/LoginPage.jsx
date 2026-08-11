@@ -5,6 +5,7 @@ import api from '../services/api';
 import { useGoogleLogin } from '@react-oauth/google';
 import { useTranslation } from 'react-i18next';
 import { Sprout, Mail, Lock, AlertCircle, CheckCircle, ArrowRight, Phone, KeyRound, Eye, EyeOff, Loader2 } from 'lucide-react';
+import HumanCaptchaWidget from '../components/HumanCaptchaWidget';
 
 const LoginPage = () => {
   const googleButtonRef = useRef(null);
@@ -19,6 +20,7 @@ const LoginPage = () => {
   const [phone, setPhone] = useState('');
   const [otpCode, setOtpCode] = useState('');
   const [otpSent, setOtpSent] = useState(false);
+  const [isHuman, setIsHuman] = useState(false);
   const [error, setError] = useState('');
   const [successMsg, setSuccessMsg] = useState(location.state?.message || '');
   const [loading, setLoading] = useState(false);
@@ -75,6 +77,12 @@ const LoginPage = () => {
   const handleEmailSubmit = async (e) => {
     e.preventDefault();
     setError('');
+
+    if (!isHuman) {
+      setError('Please complete the "I am human" security check below before signing in.');
+      return;
+    }
+
     setLoading(true);
     try {
       const loggedUser = await login(email, password);
@@ -406,6 +414,9 @@ const handleGoogleSignIn = () => {
                 </button>
               </div>
             </div>
+
+            {/* Anti-Bot Human Verification Checkbox Widget */}
+            <HumanCaptchaWidget isHuman={isHuman} setIsHuman={setIsHuman} />
 
             <button
               type="submit"
