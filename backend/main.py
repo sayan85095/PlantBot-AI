@@ -8,7 +8,7 @@ from email.message import EmailMessage
 from datetime import datetime, timedelta
 from typing import List, Optional
 
-from fastapi import FastAPI, Depends, HTTPException, status
+from fastapi import FastAPI, Depends, HTTPException, status, WebSocket, WebSocketDisconnect
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
@@ -36,6 +36,7 @@ from predict import router as predict_router
 from chatbot import router as chat_router
 from admin import router as admin_router
 from init_model import init_plant_model
+from ollama_service import stream_chat_response
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -796,6 +797,68 @@ def get_dashboard_stats(
         "disease_distribution": disease_counts,
         "recent_scans": recent_scans
     }
+
+
+# WEBSOCKET REAL-TIME AI CHAT STREAMING ENDPOINT
+@app.websocket("/ws/chat")
+async def websocket_chat_endpoint(websocket: WebSocket, db: Session = Depends(get_db)):
+    await websocket.accept()
+    logger.info("WebSocket AI Chat client connected.")
+    try:
+        while True:
+            data_str = await websocket.receive_text()
+            if not data_str:
+                continue
+
+            user_msg = ""
+            user_id = None
+            try:
+                payload = json.loads(data_str)
+                user_msg = payload.get("message", "").strip()
+                user_id = payload.get("user_id", None)
+            except Exception:
+                user_msg = data_str.strip()
+
+            if not user_msg:
+                await websocket.send_json({"type": "error", "message": "Chat message cannot be empty."})
+                continue
+
+            # Fetch last 6 history records for context
+            history_records = []
+            if user_id:
+                history_records = db.query(models.ChatMessage).filter(
+                    models.ChatMessage.user_id == user_id
+                ).order_by(models.ChatMessage.created_at.desc()).limit(6).all()
+                history_records.reverse()
+
+            history_formatted = [{"role": h.role, "content": h.message} for h in history_records]
+            history_formatted.append({"role": "user", "content": user_msg})
+
+            # Save user message to database
+            if user_id:
+                db.add(models.ChatMessage(user_id=user_id, role="user", message=user_msg))
+                db.commit()
+
+            # Notify frontend that streaming started
+            await websocket.send_json({"type": "start"})
+
+            full_reply_acc = ""
+            async for chunk in stream_chat_response(history_formatted):
+                full_reply_acc += chunk
+                await websocket.send_json({"type": "chunk", "content": chunk})
+
+            # Save assistant message to database
+            if user_id:
+                db.add(models.ChatMessage(user_id=user_id, role="assistant", message=full_reply_acc))
+                db.commit()
+
+            # Signal completion of AI streaming response
+            await websocket.send_json({"type": "done", "full_content": full_reply_acc})
+
+    except WebSocketDisconnect:
+        logger.info("WebSocket AI Chat client disconnected.")
+    except Exception as e:
+        logger.error(f"WebSocket Error: {e}")
 
 
 # SERVE FRONTEND SPA & STATIC ASSETS

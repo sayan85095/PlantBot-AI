@@ -342,3 +342,16 @@ async def generate_plant_advice(plant_name: str, disease_name: str, confidence: 
         return gemini_advice
 
     return get_fallback_plant_advice(plant_name, disease_name, confidence, status)
+
+
+async def stream_chat_response(messages_history: List[Dict[str, str]]):
+    """
+    Yields response tokens/chunks word-by-word for real-time WebSocket typing stream.
+    """
+    full_response = await generate_chat_response(messages_history)
+    words = full_response.split(" ")
+    for i, word in enumerate(words):
+        chunk = word if i == 0 else " " + word
+        yield chunk
+        await asyncio.sleep(0.025)
+

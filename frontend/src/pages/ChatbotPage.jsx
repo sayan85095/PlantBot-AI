@@ -113,6 +113,15 @@ const ChatbotPage = () => {
     }
   }, [location.state]);
 
+  const getWebSocketUrl = () => {
+    const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+    const host = window.location.hostname;
+    if (host === 'localhost' || host === '127.0.0.1') {
+      return 'ws://localhost:8000/ws/chat';
+    }
+    return 'wss://plantbot-ai.onrender.com/ws/chat';
+  };
+
   const sendMessage = async (textToSend) => {
     const text = textToSend || inputMessage;
     if (!text.trim() || loading) return;
@@ -123,29 +132,95 @@ const ChatbotPage = () => {
     }
 
     const userMsg = { id: Date.now().toString(), role: 'user', text };
+    const assistantMsgId = (Date.now() + 1).toString();
+
     setMessages((prev) => [...prev, userMsg]);
     setInputMessage('');
     setLoading(true);
 
+    let wsConnected = false;
+
     try {
-      const res = await api.post('/chat', { message: text });
-      const aiReply = res.data.response;
-      setMessages((prev) => [
-        ...prev,
-        { id: (Date.now() + 1).toString(), role: 'assistant', text: aiReply }
-      ]);
-    } catch (err) {
-      console.error(err);
-      setMessages((prev) => [
-        ...prev,
-        {
-          id: (Date.now() + 1).toString(),
-          role: 'assistant',
-          text: t('chat.connectError')
+      // Try WebSocket Real-Time Typing Stream
+      const wsUrl = getWebSocketUrl();
+      const ws = new WebSocket(wsUrl);
+
+      const timeoutId = setTimeout(() => {
+        if (!wsConnected) {
+          ws.close();
         }
-      ]);
-    } finally {
-      setLoading(false);
+      }, 3000);
+
+      ws.onopen = () => {
+        wsConnected = true;
+        clearTimeout(timeoutId);
+        // Add empty assistant message bubble to receive stream chunks
+        setMessages((prev) => [
+          ...prev,
+          { id: assistantMsgId, role: 'assistant', text: '' }
+        ]);
+        ws.send(JSON.stringify({ message: text }));
+      };
+
+      ws.onmessage = (event) => {
+        try {
+          const data = JSON.parse(event.data);
+          if (data.type === 'chunk') {
+            setMessages((prev) =>
+              prev.map((m) =>
+                m.id === assistantMsgId
+                  ? { ...m, text: m.text + data.content }
+                  : m
+              )
+            );
+          } else if (data.type === 'done') {
+            ws.close();
+            setLoading(false);
+          }
+        } catch (e) {
+          console.error(e);
+        }
+      };
+
+      ws.onerror = async () => {
+        if (!wsConnected) {
+          clearTimeout(timeoutId);
+          // Fallback to HTTP REST endpoint
+          try {
+            const res = await api.post('/chat', { message: text });
+            const aiReply = res.data.response;
+            setMessages((prev) => [
+              ...prev,
+              { id: assistantMsgId, role: 'assistant', text: aiReply }
+            ]);
+          } catch (err) {
+            console.error(err);
+            setMessages((prev) => [
+              ...prev,
+              { id: assistantMsgId, role: 'assistant', text: t('chat.connectError') }
+            ]);
+          } finally {
+            setLoading(false);
+          }
+        }
+      };
+    } catch (err) {
+      console.error('WebSocket Exception:', err);
+      try {
+        const res = await api.post('/chat', { message: text });
+        const aiReply = res.data.response;
+        setMessages((prev) => [
+          ...prev,
+          { id: assistantMsgId, role: 'assistant', text: aiReply }
+        ]);
+      } catch (restErr) {
+        setMessages((prev) => [
+          ...prev,
+          { id: assistantMsgId, role: 'assistant', text: t('chat.connectError') }
+        ]);
+      } finally {
+        setLoading(false);
+      }
     }
   };
 
@@ -178,9 +253,12 @@ const ChatbotPage = () => {
             </div>
             <div>
               <h1 className="text-xl font-extrabold text-slate-900 dark:text-white">{t('chat.title')}</h1>
-              <div className="flex items-center gap-2 mt-0.5">
+              <div className="flex flex-wrap items-center gap-2 mt-0.5">
                 <span className="inline-flex items-center gap-1 text-[11px] font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/60 px-2 py-0.5 rounded-md border border-emerald-200 dark:border-emerald-800">
                   Ollama • Gemma 3
+                </span>
+                <span className="inline-flex items-center gap-1 text-[11px] font-extrabold text-green-700 dark:text-green-300 bg-green-100 dark:bg-green-950/80 px-2 py-0.5 rounded-md border border-green-300 dark:border-green-800 animate-pulse">
+                  ⚡ Live WebSocket Stream
                 </span>
                 <span className="text-xs text-slate-400">{t('chat.subtitle')}</span>
               </div>
