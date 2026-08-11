@@ -127,11 +127,11 @@ const LandingPage = () => {
                   <div className="absolute inset-x-0 h-1 bg-gradient-to-r from-transparent via-emerald-400 to-transparent shadow-[0_0_15px_#10b981] animate-scan-line pointer-events-none" />
                   <div className="absolute bottom-4 left-4 right-4 p-3 rounded-xl bg-slate-950/85 border border-emerald-500/40 text-white backdrop-blur-md flex items-center justify-between">
                     <div>
-                      <span className="text-[10px] uppercase tracking-wider text-emerald-400 font-bold">{t('landing.tensorflowAiBadge')}</span>
-                      <p className="text-sm font-extrabold">{t('landing.tomatoLateBlight')}</p>
+                      <span className="text-[10px] uppercase tracking-wider text-emerald-400 font-bold">TensorFlow AI Computer Vision</span>
+                      <p className="text-sm font-extrabold">Ready to Detect Leaf Disease</p>
                     </div>
-                    <span className="px-2.5 py-1 rounded-lg bg-emerald-500 text-slate-950 font-black text-xs">
-                      96.42%
+                    <span className="px-2.5 py-1 rounded-lg bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 font-bold text-xs flex items-center gap-1.5">
+                      <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" /> Active
                     </span>
                   </div>
                 </div>
@@ -139,10 +139,10 @@ const LandingPage = () => {
                 <div className="mt-4 p-4 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-lg space-y-2">
                   <div className="flex items-center gap-2 text-xs font-bold text-emerald-600 dark:text-emerald-400">
                     <Bot className="w-4 h-4" />
-                    <span>{t('landing.gemmaAssistant')}</span>
+                    <span>Gemma 3 Agricultural Assistant</span>
                   </div>
                   <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed font-medium">
-                    {t('landing.aiResponseExample')}
+                    "Upload any crop or plant leaf image to instantly diagnose plant health and receive instant organic treatment guidance."
                   </p>
                 </div>
               </div>
