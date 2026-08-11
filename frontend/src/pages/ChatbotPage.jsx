@@ -294,16 +294,18 @@ const ChatbotPage = () => {
 
         {/* Chat History Box */}
         <div className="h-[480px] rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xl p-6 overflow-y-auto space-y-4">
-          {messages.map((msg) => (
-            <motion.div
-              key={msg.id}
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.3 }}
-              className={`flex items-start gap-3.5 ${
-                msg.role === 'user' ? 'flex-row-reverse' : ''
-              }`}
-            >
+          {messages.map((msg) => {
+            if (!msg.text) return null;
+            return (
+              <motion.div
+                key={msg.id}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3 }}
+                className={`flex items-start gap-3.5 ${
+                  msg.role === 'user' ? 'flex-row-reverse' : ''
+                }`}
+              >
               {/* Avatar */}
               <div className={`w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0 font-bold text-xs shadow-sm ${
                 msg.role === 'user'
@@ -322,7 +324,8 @@ const ChatbotPage = () => {
                 <p className="whitespace-pre-wrap">{msg.text}</p>
               </div>
             </motion.div>
-          ))}
+          );
+          })}
 
           {/* Typing Loading Indicator */}
           {loading && (
