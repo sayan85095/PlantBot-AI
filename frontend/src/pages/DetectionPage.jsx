@@ -54,7 +54,7 @@ const DetectionPage = () => {
     {
       name: 'Potato Early Blight',
       crop: 'Potato',
-      url: 'https://images.unsplash.com/photo-1592417817098-8f3d6ef23a28?auto=format&fit=crop&w=600&q=80'
+      url: 'https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?auto=format&fit=crop&w=600&q=80'
     },
     {
       name: 'Apple Scab',
@@ -64,12 +64,12 @@ const DetectionPage = () => {
     {
       name: 'Corn Rust',
       crop: 'Corn',
-      url: 'https://images.unsplash.com/photo-1601493700631-2b16ec4b4716?auto=format&fit=crop&w=600&q=80'
+      url: 'https://images.unsplash.com/photo-1535241749838-299277b6305f?auto=format&fit=crop&w=600&q=80'
     },
     {
       name: 'Healthy Leaf Sample',
       crop: 'Strawberry',
-      url: 'https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?auto=format&fit=crop&w=600&q=80'
+      url: 'https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?auto=format&fit=crop&w=600&q=80'
     }
   ];
 
