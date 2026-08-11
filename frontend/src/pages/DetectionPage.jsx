@@ -64,7 +64,7 @@ const DetectionPage = () => {
     {
       name: 'Corn Rust',
       crop: 'Corn',
-      url: 'https://images.unsplash.com/photo-1535241749838-299277b6305f?auto=format&fit=crop&w=600&q=80'
+      url: 'https://images.unsplash.com/photo-1595974482597-4b8da8879bc5?auto=format&fit=crop&w=600&q=80'
     },
     {
       name: 'Healthy Leaf Sample',
